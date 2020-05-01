@@ -36,6 +36,7 @@ var setDocsTheme = function (theme) {
 
   var i, len;
   var $body = $$('body');
+//  var $body = $('.activity-main');
 
   var classStr = $body.attr('class');
   var classs = classStr.split(' ');

@@ -43,4 +43,4 @@ WebNmb，苇博匿名版。包含adnmb和webnmb内容。
 - 可行性验证：
 	- iframe复制...Failed，会重新加载。
 	- 用户系统套iframe...√，但是没法跨域读取cookie
-	- iframe管理
+	- iframe管理...
