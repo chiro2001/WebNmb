@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <title>图片浏览</title>
+    <meta id="viewport" name="viewport" content="width=device-width, initial-scale=0.99,viewport-fit=cover">
+    <meta http-equiv="Content-Security-Policy" content="default-src * gap: file: content:; img-src * blob: data:; media-src *; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'unsafe-eval'">
+    <style type="text/css">
+      html {
+        font-size: 62.5%;
+      }
+      body{
+        font-size: 1.6em;
+        background-color: #1F2525;
+      }
+      @font-face {
+          font-family: "icomoon";
+          font-style: normal;
+          font-weight: 400;
+          src: url(css/icomoon.ttf) format("truetype");
+      }
+      .icon:before,
+      .icon:after {
+          font-family: "icomoon";
+          font-weight: normal;
+          font-style: normal;
+          font-size: 2.4rem;
+          display: inline-block;
+          text-transform: none;
+          letter-spacing: normal;
+          word-wrap: normal;
+      }
+      .ios .icon:before,
+      .ios .icon:after{
+          font-size: 2.2rem;
+      }
+      .icon-save:before {
+          content: "\e161";
+      }
+      .icon-share:before {
+          content: "\e80d";
+      }
+      .ios .icon-share:before{
+          content: "\e906";
+          font-size: 2rem;
+      }
+      .icon-back:before {
+          content: "\e5c4";
+      }
+      .ios .icon-back:before {
+          content: "\e5cd";
+      }
+      .icon-more:before {
+          content: "\e5d4";
+      }
+      a, img, button {
+          -webkit-tap-highlight-color: rgba(0,0,0,0) ;
+          -webkit-tap-highlight-color: transparent;
+      }
+      a:focus, button:focus, select:focus {
+          outline: none;
+      }
+      button:disabled {
+          pointer-events: none;
+          opacity: 0.2;
+      }
+      .active-fix{
+          background-color: rgb(158, 158, 158)!important;
+      }
+      body.night-mode .active-fix {
+          background-color: rgba(0, 0, 0, .26)!important;
+      } 
+      header.fixed:first-child {
+          position: absolute;
+          width: 100%;
+          height: 5.6rem;
+          line-height: 5.6rem;
+          top: -1px;
+          display: block;
+          z-index: 10;
+          padding: 0;
+          padding-top: 0;
+          border: none;
+          box-sizing: border-box;
+          user-select: none;
+          -moz-user-select: none;
+          -webkit-user-select: none;
+          background-color: #009688;
+          box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+      }
+
+      header.fixed:first-child h1 {
+          height: inherit;
+          line-height: inherit;
+          font-size: 2rem;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          display: inline-block;
+          overflow: hidden;
+          margin: 0;
+          height: 100%;
+          color: #fff;
+          display: block;
+          position: relative;
+          font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+          letter-spacing: 0.02em;
+          font-weight: 400;
+          box-sizing: border-box;
+          -webkit-user-select: none;
+          user-select: none;
+      }
+
+      header.fixed:first-child a, header.fixed:first-child button {
+          box-sizing: border-box;
+          position: relative;
+          display: block;
+          overflow: hidden;
+          float: left;
+          width: 4.6rem;
+          height: inherit;
+          line-height: inherit;
+          border: none;
+          background: none;
+          color: #fff;
+          padding: 0;
+          margin: 0;
+          font-weight: 400;
+          font-size: 2.4rem;
+          border-radius: 0;
+          text-decoration: none;
+          text-align: center;
+          text-shadow: none;
+          font-style: normal;
+          -webkit-user-select: none;
+          user-select: none;
+      }
+      header.fixed:first-child button:active, header:first-child a:active, #left-drawer a:active {
+          background-color: rgb(158, 158, 158);
+      }
+
+      header.fixed:first-child menu {
+          height: 100%;
+          float: right;
+          padding: 0;
+          margin: 0;
+          margin-right: 1px;
+          box-sizing: border-box;
+      }
+
+    /*  header.fixed:first-child button:before {
+          position: absolute;
+          display: block;
+          left: 0.8rem;
+          top: 0;
+      }*/
+      header.fixed:first-child > button{
+          width: 5.6rem;
+          margin-right: 0.4rem;
+      }
+      header.fixed:first-child > button:before {
+          left: 1.4rem;
+      }
+
+      .ios header.fixed:first-child{
+          height: 4.6rem;
+          line-height: 4.6rem;
+          top: auto;
+          bottom: 0;
+          padding-left: 2rem;
+      }
+
+      .ios header.fixed:first-child h1 {
+          font-size: 1.8rem;
+      }
+      .ios header.fixed:first-child .btn-back{
+         display: none;
+      }
+
+      .gallery-section header{
+          -webkit-transition: all 0.35s ease;
+          transition: all 0.35s ease;
+          -webkit-transform: translateY(0);
+          transform: translateY(0);
+      }
+      .gallery-section header[data-position="current"] {
+          -webkit-transform: translateY(0);
+          transform: translateY(0);
+      }
+
+      .gallery-section header[data-position="top"] {
+          -webkit-transform: translateY(-100%);
+          transform: translateY(-100%);
+      }
+      .ios .gallery-section header[data-position="top"] {
+          -webkit-transform: translateY(0);
+          transform: translateY(0);
+      }
+
+      .fragment{
+          position: absolute;
+          top: 0px;
+          left: 0px;
+          right: 0px;
+          bottom: 0px;
+          width: 100%;
+          height: 100%;
+          box-sizing: border-box;
+          overflow: hidden;
+          background-color: #1F2525;
+      }
+
+      body.night-mode header.fixed:first-child h1 {
+          color: rgba(255, 255, 255, 0.7);
+      }
+      body.night-mode header.fixed:first-child, body.night-mode header.fixed:first-child button {
+          background-color: #000;
+          color: rgba(255, 255, 255, 0.7);
+      }
+      body.night-mode header.fixed:first-child button:active, 
+      body.night-mode header:first-child a:active, 
+      body.night-mode #left-drawer a:active {
+          background-color: rgb(52, 40, 40);
+      }
+
+      .scrollable.header {
+          position: relative;
+          height: 100%;
+      }
+      .ios .scrollable.header {
+          position: relative;
+          height: calc(100% - 4.6rem);
+          padding-top: 0;
+      }
+
+      body.night-mode .mask:before{
+          content: "";
+          position: absolute;
+          left: 0;
+          top: 0;
+          width: 100%;
+          height: 100%;
+          background: #000;
+          opacity: 0.5;
+          min-width: 100%;
+          min-height: 100%;
+      }
+
+      .gallery-section .content {
+          position: relative;
+          height: 100%;
+          text-align: center;
+          vertical-align: middle;
+          color: #808080;
+      }
+
+      .image-holder {
+           position:relative;
+           width:100%;
+           height:100%;
+           text-align:center;
+           vertical-align:middle;
+           overflow-x: hidden;
+           overflow-y: auto;
+           -webkit-overflow-scrolling: touch;
+      }
+
+      .image-holder span,
+      .image-holder img{
+          display: inline-block;
+          vertical-align: middle;
+      }
+      .image-holder span{
+          height: 100%;
+      }
+      .image-holder img{
+          max-width: 100%;
+      }
+
+      .gallery-section header[data-position="current"] + .scrollable .image-holder p{
+        padding-top: 6rem;
+      }
+
+      .image-error {
+          width: 10rem;
+          height: 10rem;
+          border: 1px solid;
+      }
+      .swipe {
+          overflow: hidden;
+          visibility: hidden;
+          position: relative;
+          height: 100%;;
+      }
+      .swipe-wrap {
+          overflow: hidden;
+          position: relative;
+          height: 100%;
+          width: 100%;
+      }
+      .swipe-wrap > div {
+          float:left;
+          width:100%;
+          position: relative;
+      }
+      body.night-mode .swipe img{
+          -webkit-filter: brightness(0.6);
+          filter: brightness(0.6);
+      }
+
+      .toast_container {
+          position: absolute;
+          bottom: 12%;
+          left: 50%;
+          z-index: 2500;
+          -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, 0%);
+          background-color: rgb(48, 52, 55);
+          color: #fff;
+          font-size: 15px;
+          padding: 10px 25px;
+          border-radius: 20px;
+          opacity: 0.9;
+          text-align: center;
+          box-sizing: border-box;
+          min-height: 30px;
+          min-width: 100px;
+      }
+
+      .toast_container.toast_top {
+          top: 12%;
+          bottom: auto !important;
+      }
+      body.night-mode .toast_container {
+          color: #808080;
+      }
+      .toast_container.toast_fadein {
+          animation: toast_fadein 1s ease;
+          -webkit-animation: toast_fadein 1s ease;
+      }
+      .toast_container.toast_fadeout {
+          animation: toast_fadeout 1s ease;
+          -webkit-animation: toast_fadeout 1s ease;
+          animation-fill-mode: forwards;
+          -webkit-animation-fill-mode: forwards;
+      }
+      .android40 .toast_container,
+      .android41 .toast_container,
+      .android42 .toast_container,
+      .android43 .toast_container{
+          animation-duration: 150ms;
+          -webkit-animation-duration: 150ms;
+      }
+
+      @keyframes toast_fadein {
+          from {
+              opacity: 0;
+          }
+          to {
+              opacity: 0.9;
+          }
+      }
+      @-webkit-keyframes toast_fadein {
+          from {
+              opacity: 0;
+          }
+          to {
+             opacity: 0.9;
+          }
+      }
+      @keyframes toast_fadeout {
+          from {
+              opacity: 0.9;
+          }
+          to {
+             opacity: 0;
+         }
+      }
+      @-webkit-keyframes toast_fadeout {
+          from {
+              opacity: 0.9;
+          }
+          to {
+             opacity: 0;
+         }
+      }
+    </style>
+  </head>
+
+  <body class="body" style="background-color: #1F2525">
+     <script type="text/javascript">
+
+        (function(){
+
+          var ua = navigator.userAgent;
+          var windows = ua.match(/(Edge\/|rv:).*?([\d]+)/); //先判断windows，且只判断8.1+
+          var android = ua.match(/(Android).*?[\s\/]+(\d+)\.(\d+)/);
+          var ios = ua.match(/(iPhone|iPad|iPod).*?(\d+)_(\d+)/i);
+
+          if (!windows && android){
+              var version = android[2] + android[3] || 40; 
+              version = parseInt(version&& version.replace(/\./,""), 10);
+              document.body.classList.add("android" + version);
+              if(version<42){
+                  document.getElementById("viewport").setAttribute("content","");
+                  var ww = window.innerWidth;
+                  if(ww>=800){
+                    var ratio = ww/screen.width;
+                    document.documentElement.style.fontSize = (70*ratio) + "%";
+                  }
+              }
+          }
+          else if(ios){
+              document.body.classList.add("ios");
+              document.getElementById("viewport").setAttribute("content","width=device-width, initial-scale=0.99, maximum-scale=5.0,viewport-fit=cover");
+          }
+
+        })();
+     </script>
+     <section id="gallery-section" class="fragment gallery-section">
+        <header class="fixed" id="gallery-header" data-position="top">
+          <button type="button" class="icon icon-back btn-back"></button>
+          <menu>
+            <button type="button" class="icon icon-share btn-share"></button>
+            <button type="button" class="icon icon-save btn-save-image"></button>
+          </menu>
+          <h1 class="title"></h1>
+        </header>
+        <div class="scrollable header gallery">
+          <div class="content">
+             <div id="swipe" class="swipe">
+               <div class="swipe-wrap">
+                
+               </div>
+             </div>
+          </div>
+        </div>
+        
+     </section>
+
+    <script src="cordova.js"></script>
+    <script type="text/javascript" src="js/version.js"></script>
+    <script type="text/javascript" src="js/h.js"></script>
+    <script type="text/javascript" src="js/common.js"></script>
+    <script type="text/javascript" src="js/gallery.js"></script>
+
+  </body>
+
+
+</html>

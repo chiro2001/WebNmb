@@ -1,0 +1,608 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>A岛匿名版</title>
+		<meta name="viewport" id="viewport" content="width=device-width, initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover" />
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="msapplication-tap-highlight" content="no" />
+		<meta name="format-detection" content="telephone=no">
+    <meta http-equiv="Content-Security-Policy" content="default-src * gap: file: content: blob: data: adnmb: cdvfile:; img-src * blob: data: file: content: cdvfile:; media-src * blob: data: file: content: cdvfile:; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'unsafe-eval'">
+		<link href="css/main.css" rel="stylesheet" />
+	</head>
+
+	<body scroll="no" class="body">
+
+      <nav id="left-drawer" class="left-drawer">
+            <header class="fixed">
+                <h1 class="title mask">
+                  <label class="icon btn-select-site">A岛匿名版</label>
+                </h1>
+            </header>
+            <div class="scrollable">
+                <div class="content">
+                  <ul>
+                      <li><a href="#" class="icon icon-favor btn-favor">收藏</a></li>
+                      <li><a href="#" class="icon icon-comment btn-comment">评论</a></li>
+                      <li><a href="#" class="icon icon-function btn-function">功能</a></li>
+                      <li><a href="#" class="icon icon-setting btn-setting">设置</a></li>
+                  </ul>
+                  <ul class="title"><li><a href="#" class="icon icon-reorder btn-edit-forum"><span>版块列表</span></a></li></ul>
+                  <ul class="list my-forum-list"></ul>
+                  <ul class="title"><li><a href="#" class="icon icon-reorder btn-edit-thread"><span>常用串</span></a></li></ul>
+                  <ul class="list my-thread-list"></ul>
+                </div>
+            </div>    
+      </nav>
+		  
+			<section id="oplist-section" class="fragment oplist-section" data-forum-id="4" data-section-id="op">
+				<header class="fixed">
+          <button type="button" class="icon icon-menu btn-drawer"></button>
+					<menu class="oplist-toolbar">
+            <button type="button" class="icon icon-refresh btn-refresh"></button>
+            <button type="button" class="icon icon-search btn-search"></button>
+            <button type="button" class="icon icon-compose btn-compose"></button>
+            <button type="button" class="icon icon-more btn-show-more-oplist-option" style="display:none"></button>
+					</menu>
+          <menu class="favor-toolbar">
+            <button type="button" class="icon icon-delete btn-edit"></button>
+            <button type="button" class="icon icon-more btn-show-more-favor-option"></button>
+          </menu>
+          <menu class="search-toolbar">
+            <button type="button" id="btn-search-navigate" class="btn-navigate"></button>
+            <button type="button" class="icon icon-search btn-search"></button>
+          </menu>
+					<h1 class="title">
+            <div class="site-name"></div>
+            <div class="forum-name">( ﾟ∀。)</div>
+          </h1>
+				</header>
+				<div class="scrollable oplist">
+					<div class="content">
+            <div class="msg loading-msg">友谊魔法加载中...</div>
+					</div>
+				</div>
+
+        <section id="edit-section" class="tabbar tabbar-top" data-position="top">
+          <ul>
+            <li class="left"><button type="button" class="icon icon-back btn-exit-edit"></button></li>
+            <li><button class="btn-delete-selected" type="button">删除</button></li>
+            <li><button class="btn-select-all" type="button">全选</button></li>
+          </ul>
+        </section>
+
+			</section>
+      
+			<section id="thread-section" class="fragment thread-section">
+				<header class="fixed">
+					<button type="button" class="icon icon-back btn-back"></button>
+					<menu>
+           <button type="button" class="icon icon-reply btn-reply-thread"></button>
+           <button id="btn-thread-navigate" type="button" class="btn-navigate" style="display:none"></button>
+           <button type="button" class="icon icon-more btn-show-more-thread-option"></button>
+					</menu>
+					<h1 class="title">
+            <div class="site-name"></div>
+            <div class="thread-name">(´・ω・`)</div>
+          </h1>
+				</header>
+				<div class="scrollable thread">
+					<div class="content"></div>
+				</div>
+        <section id="thread-tabbar-section" class="tabbar tabbar-bottom" data-position="bottom">
+            <ul>
+              <li><button type="button" class="icon icon-share" data-action="share"></button></li>
+              <li><button type="button" id="btn-tabbar-navigate" class="btn-navigate" data-action="navigate" data-current-page="1"></button></li>
+              <li><button type="button" class="icon icon-add-favorite" data-action="addFavorite"></button></li>
+              <li><button type="button" class="icon icon-download" data-action="download"></button></li>
+            </ul>
+            <ul>
+              <li><button type="button" data-action="exit">取消</button></li>
+              <li><button type="button"></button></li>
+              <li><button type="button" data-action="shareAs">分享</button></li>
+              <li><button type="button" class="btn-select-all" data-action="selectAll">反选</button></li>
+            </ul>
+        </section>
+
+			</section>
+      
+      <section id="preview-thread-section" class="fragment preview-thread-section">
+        <div class="scrollable">
+          <header class="fixed">
+            <button type="button" class="icon icon-back btn-back"></button>
+            <menu>
+             <button type="button" class="icon icon-setting" style="display:none"></button>
+             <button type="button" class="icon icon-done"></button>
+            </menu>
+            <h1 class="title">
+              <div class="site-name"></div>
+              <div class="thread-name">(´・ω・`)</div>
+            </h1>
+          </header>
+          <div class="content"></div>
+        </div>
+      </section>
+
+      <section id="search-section" class="fragment search-section" data-swipe-back="true">
+        <header class="fixed">
+          <button type="button" class="icon icon-back btn-back"></button>
+          <menu>
+            <button type="button" class="icon icon-filter"></button>
+            <button type="button" class="icon icon-search"></button>
+          </menu>
+          <h1 class="title"><input id="input-search" type="search" placeholder="输入关键字或串号"></h1>
+        </header>
+        <div class="scrollable">
+          <div class="content"></div> 
+        </div>
+      </section>
+
+      <section id="admin-section" class="fragment admin-section">
+        <header class="fixed">
+          <button type="button" class="icon icon-back btn-back"></button>
+          <menu>
+            <button type="button" class="icon btn-logout" style="font-size:1.6rem;margin-right:5px">退出</button>
+            <button type="button" class="icon icon-more btn-show-more-admin-option" style="display:none"></button>
+          </menu>
+          <h1 class="title">红名充值</h1>
+        </header>
+        <div class="scrollable">
+          <div class="content">管理员点击登录</div>
+        </div>
+      </section>
+
+      <section id="reorder-section" class="fragment reorder-section">
+        <header class="fixed">
+          <button type="button" class="icon icon-back btn-back"></button>
+          <menu style="display:none" class="menu-reorder-thread">
+            <button type="button" class="icon-add icon"></button>
+          </menu>
+          <menu style="display:none" class="menu-reorder-timeline">
+            <button type="button" class="icon-schedule icon"></button>
+          </menu>
+          <h1 class="title">版块管理</h1>
+        </header>
+        <div class="scrollable">
+          <div class="content">
+              <ul class="my-list" data-label="1. 按住排序图标&#13;&#10;2. 把要显示的版块或串拖到左边区域&#13;&#10;3. 上下拖动左边区域的版块或串可排序"></ul>
+              <ul class="hidden-list" data-label="1. 按住排序图标&#13;&#10;2. 把要显示的版块或串拖到左边区域&#13;&#10;3. 上下拖动左边区域的版块或串可排序"></ul>
+          </div>
+        </div>
+      </section>
+
+      <section id="reorder-timeline-section" class="fragment reorder-timeline-section reorder-section">
+        <header class="fixed">
+          <button type="button" class="icon icon-back btn-back"></button>
+          <h1 class="title">时间线管理</h1>
+        </header>
+        <div class="scrollable">
+          <div class="content">
+              <ul class="my-list" data-label="1. 按住排序图标&#13;&#10;2. 把不想在时间线显示的版块拖到右边区域"></ul>
+              <ul class="hidden-list" data-label="1. 按住排序图标&#13;&#10;2. 把不想在时间线显示的版块拖到右边区域"></ul>
+          </div>
+        </div>
+      </section>
+
+      <section id="setting-section" class="fragment setting-section" data-swipe-back="true">
+        <header class="fixed">
+          <button type="button" class="icon icon-back btn-back"></button>
+          <h1 class="title">设置</h1>
+        </header>
+        <div class="scrollable">
+          <div class="content" data-type="list">
+              <header>常规</header>
+              <ul>
+                  <li>
+                    <a href="#" id="night-mode">
+                      <p>夜间模式</p>
+                      <aside class="switch">
+                          <input type="checkbox"/>
+                          <label></label>
+                      </aside>
+                    </a>
+                  </li>
+                  <li style="display:none">
+                    <a href="#" id="select-theme">
+                        <p>外观主题</p>
+                        <aside>
+                          跟随系统
+                        </aside>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#" id="show-cite">
+                      <p>自动显示引用</p>
+                      <aside class="switch">
+                        <input type="checkbox"/>
+                        <label for="show-cite"></label>
+                      </aside>
+                    </a>
+                  </li>
+                  <li>
+                      <a href="#" id="imgless-mode">
+                        <p>图片显示</p>
+                        <aside>
+                          始终有图
+                        </aside>
+                      </a>
+                  </li>
+                  <li>
+                    <a href="#" id="app-fontSize">
+                      <p>字号</p>
+                      <aside></aside>
+                    </a>
+                  </li>
+              </ul>
+              <header>数据</header>
+              <ul>
+                  <li>
+                    <a href="#" id="importExport-data">
+                      <p>备份/还原</p>
+                      <p>上次备份时间：从未</p>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#" id="manage-cookie">
+                      <p>管理饼干</p>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#" id="bind-uuid"><p>绑定收藏/订阅ID</p></a>
+                  </li>
+                  <li style="display:none">
+                    <a href="#" id="clear-cache"><p>清理缓存</p></a>
+                  </li>
+              </ul>
+              <header>杂项</header>
+              <ul>
+                  <li>
+                    <a href="#" id="navigate-to">
+                      <p>打开串时跳转至</p>
+                      <aside>上次看到的页</aside>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#" id="enable-fullscreen">
+                      <p>双击全屏</p>
+                      <p>注：回复时会自动退出全屏</p>
+                      <aside class="switch">
+                        <input type="checkbox"/>
+                        <label></label>
+                      </aside>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#" id="reorder-tabbar">
+                      <p>自定义底部工具栏</p>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#" id="diagnose-network">
+                      <p>网络诊断</p>
+                    </a>
+                  </li>
+              </ul>
+              <header>关于</header>
+              <ul>
+                  <li>
+                    <a href="#" id="app-version">
+                      <p>版本</p>
+                      <p>1.2.1</p>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#" id="send-feedback">
+                      <p>联系</p>
+                      <p>Yuan(runrun912@live.com)</p>
+                    </a>
+                  </li>
+              </ul>
+          </div>
+        </div>
+        
+      </section>
+			
+			<section id="importExport-section" class="fragment importExport-section" data-swipe-back="true">
+				<header class="fixed">
+					<button type="button" class="icon icon-back btn-back"></button>
+					<h1 class="title">备份/还原</h1>
+				</header>
+				<div class="scrollable">
+					<div class="content" data-type="list">
+              <ul>
+                  <li>
+                    <a href="#" id="btn-export">
+                      <p>备份</p>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#" id="btn-import">
+                      <p>还原</p>
+                    </a>
+                  </li>
+              </ul>
+
+              <div class="instruction msg"></div>
+
+              <div class="instruction">
+                  <header class="icon icon-help" data-label="帮助"></header>
+                  <ul>
+                    <li id="data-path"></li>
+                  	<li>备份/还原的数据包括收藏、收藏ID和评论。每天自动备份一次。</li>
+                  	<li>还原的数据将与设备原有数据合并，不会影响原有数据。</li>
+                  </ul>
+
+              </div>
+					</div>
+				</div>
+				
+			</section>
+
+			<section id="cookie-section" class="fragment cookie-section" data-swipe-back="true">
+				<header class="fixed">
+					<button type="button" class="icon icon-back btn-back"></button>
+					<menu>
+            <button type="button" class="icon-add icon"></button>
+					</menu>
+					<h1 class="title"></h1>
+				</header>
+				<div class="scrollable">
+					<div class="content" data-type="list">
+            <div class="cookie-list"></div>
+            <div class="instruction">
+                <header class="icon icon-help" data-label="如何获取饼干"></header>
+                <ul>
+                  <li>主岛：点击右上角的添加按钮导入饼干。</li>
+                  <li>备胎岛：管理员发放饼干时，回复串即可自动获取。</li>
+                </ul>
+            </div>
+		
+					</div>
+				</div>
+				
+			</section>
+
+      <section id="font-section" class="fragment font-section">
+        <header class="fixed">
+          <button type="button" class="icon icon-back btn-back"></button>
+          <h1 class="title">文字设置</h1>
+        </header>
+        <div class="scrollable">
+          <div class="content">
+              <fieldset class="comment-content">
+              </fieldset>
+              <ul class="range-container">
+                <li>
+                  <input class="app-font-size needsclick needsfocus" type="range" min="1" max="10" step="1" value="3" data-label="字号 3">
+                </li>
+                <li>
+                  <input class="app-line-height needsclick needsfocus" type="range" min="1" max="10" step="1" value="5" data-label="行距 5">
+                </li>
+                <li>
+                  <input class="app-letter-spacing needsclick needsfocus" type="range" min="1" max="10" step="1" value="5" data-label="字距 5">
+                </li>
+              </ul>
+              <ul class="select-container">
+                <li>
+                  <select class="app-font-size"></select>
+                </li>
+                <li>
+                  <select class="app-line-height"></select>
+                </li>
+              </ul>
+          </div>
+        </div>
+      </section>
+
+      <section id="tabbar-reorder-section" class="fragment reorder-section tabbar-reorder-section">
+        <header class="fixed">
+          <button type="button" class="icon icon-back btn-back"></button>
+          <h1 class="title">自定义工具栏按钮</h1>
+        </header>
+        <div class="scrollable">
+          <div class="content">
+              <ul class="my-list" data-label="1. 按住排序图标&#13;&#10;2. 把要显示的功能按钮拖到左边区域&#13;&#10;3. 上下拖动左边区域的功能按钮可排序"></ul>
+              <ul class="hidden-list"></ul>
+          </div>
+        </div>
+      </section>
+
+			<section id="download-section" class="fragment download-section" data-swipe-back="true">
+				<header class="fixed">
+					<button type="button" class="icon icon-back btn-back"></button>
+					<h1 class="title">下载列表</h1>
+				</header>
+				<div class="scrollable">
+					<div class="content"></div>
+				</div>
+			</section>
+
+			<section id="reply-section" class="fragment reply-section" data-swipe-back="true">
+				<header class="fixed">
+					<button type="button" class="icon icon-back btn-back"></button>
+					<menu>
+                  <select class="report-reason-selector"></select>
+			            <select class="cookie-selector" style="display:none"></select>
+			            <button type="button" class="icon icon-more" style="display:none"></button>
+					</menu>
+					<h1 class="title"></h1>
+				</header>
+				<div class="scrollable">
+
+					<input type="file" id="hidden-image" accept="image/*">
+         			<input type="text" id="input-email" size="20" style="display:none">
+					<div class="content">
+						<textarea id="input-content" placeholder="发表评论前请先阅读版规"></textarea>
+						<ul class="reply-menu">
+							<li>
+								<button type="button" id="btn-save-as-draft" class="icon icon-save"></button>
+							</li>
+		          <li>
+		          	<button type="button" id="btn-select-media" class="icon icon-attachment"></button>
+		          </li>
+		          <li>
+		          	<button type="button" id="btn-select-emoji">( ﾟ∀。)</button>
+		          </li>
+              <li class="btn-send-container">
+                <button type="button" id="btn-send" class="icon icon-send btn-send"></button>
+              </li>
+		          <div id="emoji-container" class="container" style="display:none"></div>
+              <div id="media-container" class="container" style="display:none">
+                <ul>
+                  <li><button type="button" class="icon icon-camera" data-label="拍照"></button></li>
+                  <li><button type="button" class="icon icon-image" data-label="图库"></button></li>
+                  <li><button type="button" class="icon icon-gesture" data-label="涂鸦"></button></li>
+                  <li><button type="button" class="icon icon-luwei" data-label="芦苇娘"></button></li>
+                </ul>
+                <div class="preview-area">
+                  <div id="preview" class="preview"></div>
+                  <div class="checkbox">
+                        <input type="checkbox" id="checkbox-waterMark" checked="true" />
+                        <label for="checkbox-waterMark"></label><label for="checkbox-waterMark" style="margin-left:5px">水印</label>
+                  </div>
+                </div>
+              </div>
+						</ul>
+					</div>
+				</div>
+			</section>
+
+      <section id="sketch-section" class="fragment sketch-section">
+        <header class="fixed">
+          <button type="button" class="icon icon-back btn-back"></button>
+          <menu>
+            <button type="button" class="icon icon-done"></button>
+          </menu>
+          <h1 class="title">涂鸦板</h1>
+        </header>
+        <div class="scrollable">
+          <div class="content">
+              <figure></figure>
+              <ul class="sketch-menu">
+                <li>
+                  <button type="button" class="icon icon-delete"></button>
+                </li>
+                <li>
+                  <button type="button" class="icon icon-undo"></button>
+                </li>
+                <li>
+                  <button type="button" class="icon icon-palette"></button>
+                </li>
+                <li>
+                  <button type="button" class="icon icon-brush"></button>
+                </li>
+    
+                <div id="palette-container" class="container" style="display:none"></div>
+                <div id="brush-container" class="container" style="display:none"></div>
+              </ul>
+          </div>
+
+        </div>
+      </section>
+			
+			<section id="gallery-section" class="fragment gallery-section">
+				<header class="fixed">
+					<menu>
+            <button type="button" class="icon icon-share btn-share"></button>
+            <button type="button" class="icon icon-save btn-save-image"></button>
+            <button type="button" class="icon icon-close btn-back"></button>
+            <button type="button" class="icon icon-zoomin btn-zoomin"></button>
+            <button type="button" class="icon icon-zoomout btn-zoomout"></button>
+					</menu>
+				</header>
+				<div class="scrollable gallery">
+          <div class="content">
+             <div id="swipe" class="swipe">
+               <div class='swipe-wrap'>
+                
+               </div>
+             </div>
+          </div>
+        </div>
+				<div class="gallery-title"></div>
+			</section>
+
+      <section id="game-section" class="fragment game-section">
+        <header class="fixed">
+          <button type="button" class="icon icon-back btn-back"></button>
+          <h1 class="title"></h1>
+        </header>
+        <div class="scrollable">
+          <div class="content">
+             
+          </div>
+        </div>
+      </section>
+
+      <section id="iframe-section" class="fragment iframe-section">
+        <header class="fixed">
+          <button type="button" class="icon icon-back btn-back"></button>
+          <h1 class="title"></h1>
+        </header>
+        <div class="scrollable">
+          <div class="content">
+             
+          </div>
+        </div>
+      </section>
+
+      <section id="member-center-section" class="fragment member-center-section">
+        <header class="fixed">
+          <button type="button" class="icon icon-back btn-back"></button>
+          <h1 class="title">用户中心</h1>
+        </header>
+        <div class="scrollable">
+          <div class="content">
+             
+          </div>
+        </div>
+      </section>
+
+      <section id="network-diagnosis-section" class="fragment network-diagnosis-section">
+        <header class="fixed">
+          <button type="button" class="icon icon-back btn-back"></button>
+          <menu>
+            <button type="button" class="icon btn-export-diagnosis" style="font-size:1.6rem;margin-right:6px;width:auto">导出结果</button>
+          </menu>
+          <h1 class="title">网络诊断</h1>
+        </header>
+        <div class="scrollable">
+          <div class="content" data-type="list">
+              <ul>
+                  <li>
+                    <a href="#" class="btn-start-diagnosis">
+                      开始
+                    </a>
+                  </li>
+                  <li style="height:0"></li>
+              </ul>
+
+              <fieldset class="instruction msg simple-diagnosis-msg" style="display:none">
+                
+              </fieldset>
+
+              <fieldset class="instruction msg advanced-diagnosis-msg" style="display:none">
+                
+              </fieldset>
+          </div>
+        </div>
+      </section>
+
+      <section id="guide-section" class="fragment">
+
+      </section>
+
+      <div id="toTop-fab" class="fab" style="display:none">
+          <button class="icon btn-toTop"></button>
+      </div>
+
+<!--      <script src="cordova.js"></script> -->
+      <script type="text/javascript" src="static/js/version.js"></script>
+      <script type="text/javascript" src="static/js/h.js"></script>
+      <script type="text/javascript" src="static/js/common.js"></script>
+      <script type="text/javascript" src="static/js/main.js"></script>
+
+	</body>
+
+</html>

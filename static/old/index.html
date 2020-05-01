@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            A岛
+        </title>
+        <script type="text/javascript" src="js/version.js"></script>
+        <script>
+
+             var src = "main.html";
+             var versionid = 'H' in window ? H.Versionid : 0;
+		     var pkg = JSON.parse(localStorage.getItem("package")) || {};
+
+		     if(versionid && pkg.directory && pkg.isCompleted && parseInt(pkg.versionid, 10)>versionid) {
+		       var newSrc = pkg.directory + "/main.html";
+		       var xhr = new XMLHttpRequest();
+		       xhr.onload = function(){
+		        window.location = newSrc;
+		       };
+		       xhr.onerror = xhr.onabort = function(err){
+		         console.log(err);
+		         // setTimeout(function(){
+		         //  alert("Path doesn't exist: " + pkg.directory);
+		         // }, 0);
+		         window.location = src;
+		       };
+		       xhr.open("GET", newSrc);
+		       xhr.send();
+		     }
+		     else {
+		      window.location = src;
+		     }
+
+		     setTimeout(function(){
+		        window.location = src;
+		     }, 3000);
+        </script>
+    </head>
+    <body>
+    </body>
+</html>

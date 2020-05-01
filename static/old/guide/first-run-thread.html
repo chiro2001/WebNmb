@@ -1,0 +1,98 @@
+﻿<style type="text/css">
+    .guide-section {
+       display: block!important;
+       opacity: 1!important;
+       width: 100%!important;
+       height: 100%!important;
+       left: 0!important;
+       top: 0!important;
+       background-color: rgba(0,0,0,0.8)!important;
+       -webkit-transform: translateX(0)!important;
+       transform: translateX(0)!important;
+       -webkit-transition: none!important;
+       transition: none!important;
+    }
+    .guide-section .rid{
+       border: 2px dashed rgb(84, 34, 186);
+       padding: 0 5px;
+    }
+    .guide-section  .comment-header .tip.tip-right {
+       bottom: -30px;
+       top: auto;
+    }
+    .guide-section .btn-close-guide{
+       position: absolute;
+       bottom: 0;
+       width: 100%;
+       height: 50px;
+       line-height: 50px;
+       text-align: center;
+       border: none;
+       background-color: #009688;
+       color: #fff;
+       font-size: 1.6rem;
+       letter-spacing: 1px;
+    }
+    .guide-section .tip{
+       position: absolute;
+       left: 60px;
+       bottom: -60px;
+       color: #fff;
+    }
+    .guide-section .tip.tip-left{
+       left: 10px;
+       top: 30%;
+       bottom: auto;
+    }
+    .guide-section .tip.tip-right{
+       left: auto;
+       right: 10px;
+       top: 50%;
+       bottom: auto;
+       text-align: right;
+    }
+    .guide-section .comment .tip{
+        left: auto; 
+        bottom: auto; 
+        right: 20px;
+    }
+    .guide-section .comment .curve:before{
+        border-color: rgb(84, 34, 186);
+    }
+    .guide-section .comment .arrow-up:after{
+        border-bottom-color: rgb(84, 34, 186);
+    }
+</style>
+
+  
+<section class="guide-section fragment">
+      <header class="fixed">
+        <button type="button" class="icon icon-back btn-back"></button>
+        <menu>
+          <button type="button" class="icon icon-reply btn-reply-thread"></button>
+          <button type="button" class="icon icon-more btn-show-more-thread-option"></button>
+        </menu>
+        <h1 class="title">No.1234567</h1>
+      </header>
+      <div class="scrollable">
+        <div class="tip tip-left"><span class="arrow arrow-right"></span><p>向右滑动返回</p></div>
+        <div class="tip tip-right"><span class="arrow arrow-left"></span><p>向左滑动回复串</p></div>
+        <div class="content">
+           <article data-reply-count="3" class="comment">
+              <div class="comment-header"><span class="uid">uid125r</span><span class="ttime">12:59:30</span><a class="rid" href="####">No.6448976</a>
+              </div>
+              <div class="tip">
+                <span class="arrow arrow-up curve-left">
+                  <span class="curve"></span>
+                </span>
+              </div>
+              <div class="comment-content">
+                点击串号引用该回复<br><br>
+              </div>
+            </article>
+        </div>
+        <footer>
+           <button type="button" class="btn-close-guide">知道了</button>
+        </footer>
+      </div>  
+</section>
