@@ -1,9 +1,11 @@
+NMB_HOST = '/adnmb';
+
 SETTINGS = {
-    HOST : 'http://localhost/adnmb',
-    API_GET_FORUM_LIST : 'http://localhost/adnmb' + '/getForumList/',
-    API_THREAD : 'http://localhost/adnmb' + '/thread/',
-    API_SHOWF : 'http://localhost/adnmb' + '/showf/',
-    API_SEARCH : 'http://localhost/adnmb' + '/Search/',
+    HOST : NMB_HOST,
+    API_GET_FORUM_LIST : NMB_HOST + '/getForumList/',
+    API_THREAD : NMB_HOST + '/thread/',
+    API_SHOWF : NMB_HOST + '/showf/',
+    API_SEARCH : NMB_HOST + '/Search/',
     CDN_IMG : 'https://nmbimg.fastmirror.org/image/',
     CDN_THUMB : 'https://nmbimg.fastmirror.org/thumb/'
 };
