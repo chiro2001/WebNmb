@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans" style="width: 100%; height: 100%">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <title>A岛匿名版</title>
+<!--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdui/0.4.3/css/mdui.min.css">-->
+    <link rel="stylesheet" href="css/mdui.css">
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-88818678-1');
+    </script>
+</head>
+<body class="mdui-appbar-with-toolbar mdui-loaded mdui-theme-primary-teal mdui-theme-accent-red">
+    <header class="mdui-appbar mdui-appbar-fixed mdui-appbar-inset">
+        <div class="mdui-toolbar mdui-color-theme">
+            <span class="mdui-btn mdui-btn-icon mdui-ripple mdui-ripple-white nmb-btn-back"><i class="mdui-icon material-icons">arrow_back</i></span>
+            <div class="mdui-textfield" style="width: 100%">
+                <input class="mdui-textfield-input" type="text" placeholder="输入关键词或串号"/>
+            </div>
+            <span class="mdui-btn mdui-btn-icon mdui-ripple mdui-ripple-white nmb-btn-reply"><i
+                    class="mdui-icon material-icons">filter_list</i></span>
+            <span class="mdui-btn mdui-btn-icon mdui-ripple mdui-ripple-white nmb-btn-search"><i class="mdui-icon material-icons">search</i></span>
+        </div>
+    </header>
+
+    <!--    这里是承载的内容-->
+    <div class="mdui-container doc-container doc-no-cover">
+        <div class="nmb-loading-box"
+             style="width: 100%; height: 32px; line-height: 32px; text-align:center; display: none">
+            <div class="mdui-spinner" style="display: inline-block;" width="32px" height="32px"></div>
+            <div class="nmb-loading mdui-text-color-theme" style="display: inline-block;"></div>
+        </div>
+        <br/>
+        <div class="nmb-search-results">
+            <div class="mdui-card" style="padding: 15px">
+                <div class="nmb-search-result-text mdui-typo-body-1-opacity">搜索记录</div>
+            </div>
+            <div class="mdui-card" style="padding: 15px">
+                <div class="nmb-search-result-text mdui-typo-body-1-opacity">搜索记录</div>
+            </div>
+        </div>
+    </div>
+
+<script src="js/jquery.js"></script>
+<script src="js/mdui.js"></script>
+<script src="js/cos-js-sdk-v5.js"></script>
+<script src="js/clipboard.js"></script>
+<script>var $$ = mdui.JQ;</script>
+<script src="js/theme.js"></script>
+<!--<script src="windowManager.js"></script>-->
+<script src="js/searchActivity.js"></script>
+<script type="application/javascript">
+    searchActivity();
+
+</script>
+</body>
+</html>
