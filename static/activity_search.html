@@ -20,36 +20,32 @@
 <body class="mdui-appbar-with-toolbar mdui-loaded mdui-theme-primary-teal mdui-theme-accent-red">
     <header class="mdui-appbar mdui-appbar-fixed mdui-appbar-inset">
         <div class="mdui-toolbar mdui-color-theme">
-            <span class="mdui-btn mdui-btn-icon mdui-ripple mdui-ripple-white nmb-btn-drawer"><i class="mdui-icon material-icons">menu</i></span>
-            <div class="nmb-toolbar mdui-typo" style="text-align:left; line-height: 20px">
-                <div class="nmb-title" style="font-weight: 500; font-size: 20px">A岛 · adnmb.com</div>
-                <div class="nmb-subtitle mdui-text-color-grey-400">时间线</div>
+            <span class="mdui-btn mdui-btn-icon mdui-ripple mdui-ripple-white nmb-btn-back"><i class="mdui-icon material-icons">arrow_back</i></span>
+            <div class="mdui-textfield" style="width: 100%">
+                <input class="mdui-textfield-input" type="text" placeholder="输入关键词或串号"/>
             </div>
-            <div class="mdui-toolbar-spacer"></div>
-            <span class="mdui-btn mdui-btn-icon mdui-ripple mdui-ripple-white nmb-icon-search"><i
-                    class="mdui-icon material-icons">search</i></span>
-            <span class="mdui-btn mdui-btn-icon mdui-ripple mdui-ripple-white"><i class="mdui-icon material-icons">edit</i></span>
+            <span class="mdui-btn mdui-btn-icon mdui-ripple mdui-ripple-white nmb-btn-reply"><i
+                    class="mdui-icon material-icons">filter_list</i></span>
+            <span class="mdui-btn mdui-btn-icon mdui-ripple mdui-ripple-white nmb-btn-search"><i class="mdui-icon material-icons">search</i></span>
         </div>
     </header>
 
     <!--    这里是承载的内容-->
     <div class="mdui-container doc-container doc-no-cover">
-        <div class="nmb-loading-box" style="width: 100%; height: 32px; line-height: 32px; text-align:center; display: none">
+        <div class="nmb-loading-box"
+             style="width: 100%; height: 32px; line-height: 32px; text-align:center; display: none">
             <div class="mdui-spinner" style="display: inline-block;" width="32px" height="32px"></div>
             <div class="nmb-loading mdui-text-color-theme" style="display: inline-block;"></div>
         </div>
         <br/>
-        <div class="nmb-forum-threads">
-            
+        <div class="nmb-search-results">
+            <div class="mdui-card" style="padding: 15px">
+                <div class="nmb-search-result-text mdui-typo-body-1-opacity">搜索记录</div>
+            </div>
+            <div class="mdui-card" style="padding: 15px">
+                <div class="nmb-search-result-text mdui-typo-body-1-opacity">搜索记录</div>
+            </div>
         </div>
-        <div class="nmb-footer" style="width: 100%; height: 32px; line-height: 32px; text-align:center">
-            <div class="mdui-typo-caption-opacity nmb-footer-text" style="display: inline-block;">上拉加载更多</div>
-        </div>
-        <div class="nmb-loading-box2" style="width: 100%; height: 32px; line-height: 32px; text-align:center; display: none">
-            <div class="mdui-spinner" style="display: inline-block;" width="32px" height="32px"></div>
-            <div class="nmb-loading mdui-text-color-theme" style="display: inline-block;"></div>
-        </div>
-        
     </div>
 
 <script src="js/jquery.js"></script>
@@ -59,10 +55,9 @@
 <script>var $$ = mdui.JQ;</script>
 <script src="js/theme.js"></script>
 <!--<script src="windowManager.js"></script>-->
-<script src="js/mainActivity.js"></script>
-<script src="js/nmb.js"></script>
+<script src="js/searchActivity.js"></script>
 <script type="application/javascript">
-    mainActivity();
+    searchActivity();
 
 </script>
 </body>

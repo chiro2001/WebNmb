@@ -12,7 +12,8 @@ function iframesUpdateStatus() {
         iframe.selector.hide();
     if (iframe_stack.isempty())
         return;
-    iframe_stack.top().selector.show();
+//    iframe_stack.top().selector.show();
+    iframe_stack.top().selector.fadeIn('fast');
 }
 
 function iframeShow(iframe) {
@@ -40,6 +41,7 @@ function iframeClose(tag) {
     if (iframe_stack.isempty())
         return false;
     var iframe = iframe_stack.top();
+    iframe.selector.fadeOut('fast');
     iframe.selector.remove();
     iframe_stack.pop();
     iframesUpdateStatus();

@@ -1,5 +1,6 @@
 from flask import *
 import requests
+from datetime import timedelta
 from pyadnmb.pyadmnb import *
 
 '''
@@ -12,6 +13,7 @@ self.apis = {
 }
 '''
 app = Flask('adnmb')
+app.config['SEND_FILE_MAX_AGE_DEFAULT'] = timedelta(1)
 ad = Admnb()
 
 
@@ -43,14 +45,14 @@ def get_forum_list():
 
 @app.route('/thread/', methods=['GET'])
 def thread():
-    return jsonify_response(requests.get(ad.apis['thread'] + '/?' + request.query_string.decode(errors='ignore')))
+    return jsonify_response(requests.get(ad.apis['thread'] + '/?' + request.query_string.decode(errors='ignore'), cookies=request.cookies))
 
 
 @app.route('/showf/', methods=['GET'])
 def showf():
-    return jsonify_response(requests.get(ad.apis['showf'] + '/?' + request.query_string.decode(errors='ignore')))
+    return jsonify_response(requests.get(ad.apis['showf'] + '/?' + request.query_string.decode(errors='ignore'), cookies=request.cookies))
 
 
 @app.route('/Search/', methods=['GET'])
 def search():
-    return jsonify_response(requests.get(ad.apis['search'] + '/?' + request.query_string.decode(errors='ignore'), cookies=request.cookies))
+    return jsonify_response(requests.get(ad.apis['search'] + '/?' + request.query_string.decode(errors='ignore')))

@@ -2,11 +2,10 @@ from flask import *
 from flask_cors import *
 from werkzeug.middleware.dispatcher import DispatcherMiddleware
 from werkzeug.serving import run_simple
+import os
 
 from admnb import app as app_adnmb
 from webnmb import app as app_webnmb
-
-
 
 
 app = Flask(__name__)
@@ -22,4 +21,4 @@ dm = DispatcherMiddleware(app,
 
 
 if __name__ == '__main__':
-    run_simple('0.0.0.0', 80, dm)
+    run_simple('0.0.0.0', int(os.environ.get('PORT', 80)), dm)

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-cmn-Hans" style="width: 100%; height: 100%">
+<html lang="zh-cmn-Hans" style="width: 100%; height: 100%;">
 <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <meta charset="utf-8">
@@ -9,7 +9,7 @@
     <meta http-equiv="Cache-Control" content="no-siteapp">
     <title>A岛匿名版</title>
 <!--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdui/0.4.3/css/mdui.min.css">-->
-    <link rel="stylesheet" href="css/mdui.css">
+    <link rel="stylesheet" href="static/css/mdui.css">
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
@@ -44,10 +44,10 @@
     </style>
 </head>
 <body style="position: relative" class="mdui-theme-primary-teal mdui-theme-accent-red">
-    <div class="mdui-drawer mdui-drawer-close mdui-appbar-with-toolbar mdui-drawer-full-height" id="main-drawer">
+    <div class="mdui-drawer mdui-appbar-with-toolbar mdui-drawer-full-height" id="main-drawer" style="overflow-y: hidden; overflow: scroll; overflow-x: hidden;">
         <header class="mdui-appbar mdui-appbar-fixed">
             <div class="mdui-toolbar mdui-color-theme">
-                <img src="image/icon/icon96.png" height="60%" class="nmb-game-icon">
+                <img src="static/image/icon/icon96.png" height="60%" class="nmb-icon-game">
                 <div class="mdui-typo-body-2">A岛匿名版<i class="mdui-icon material-icons">keyboard_arrow_down</i></div>
             </div>
         </header>
@@ -76,10 +76,8 @@
             <div style="margin: 5%; height: 16px">
                 <div class="mdui-text-color-theme" style="float: left">版块列表</div>
                 <i class="mdui-icon material-icons mdui-text-color-theme" style="float: right">reorder</i></div>
-            <ul class="mdui-list">
-                <li class="mdui-list-item mdui-ripple">
-                    <div class="mdui-list-item-content">时间线</div>
-                </li>
+            <ul class="mdui-list nmb-forum-list">
+                
             </ul>
         </div>
         <div class="mdui-divider" style="width: 100%"></div>
@@ -93,15 +91,16 @@
     <div id="nmb-iframes" style="position: absolute; left: 0px; right: 0px">
 <!--        <iframe style="width: 100%; height: 100%; border: 0px"></iframe>-->
     </div>
-    <script src="js/jquery.js"></script>
-    <script src="js/mdui.js"></script>
-    <script src="js/cos-js-sdk-v5.js"></script>
-    <script src="js/clipboard.js"></script>
+    <script src="static/js/jquery.js"></script>
+    <script src="static/js/mdui.js"></script>
+<!--    <script src="static/js/cos-js-sdk-v5.js"></script>-->
+<!--    <script src="static/js/clipboard.js"></script>-->
     <script>var $$ = mdui.JQ;</script>
-    <script src="mystack.js"></script>
-    <script src="theme.js"></script>
-    <script src="windowManager.js"></script>
-    <script src="main.js"></script>
+    <script src="static/js/mystack.js"></script>
+    <script src="static/js/theme.js"></script>
+    <script src="static/js/windowManager.js"></script>
+    <script src="static/js/nmb.js"></script>
+    <script src="static/js/main.js"></script>
     <script type="application/javascript">
         main();
 
